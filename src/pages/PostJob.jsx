@@ -28,19 +28,31 @@ const PostJob = () => {
       });
       return;
     }
-    // Save job to local storage
-    const newJob = { title: jobTitle, description: jobDescription, location: jobLocation, startDate };
-    const storedJobs = JSON.parse(localStorage.getItem("jobs")) || [];
-    storedJobs.push(newJob);
-    localStorage.setItem("jobs", JSON.stringify(storedJobs));
-    toast({
-      title: "Job Posted",
-      description: "Your job has been posted successfully.",
-      status: "success",
-      duration: 5000,
-      isClosable: true,
-    });
-    navigate("/jobs"); // Redirect to jobs page after successful submission
+    try {
+      // Save job to local storage
+      const newJob = { title: jobTitle, description: jobDescription, location: jobLocation, startDate };
+      const storedJobs = JSON.parse(localStorage.getItem("jobs")) || [];
+      storedJobs.push(newJob);
+      localStorage.setItem("jobs", JSON.stringify(storedJobs));
+      console.log("Saved jobs:", storedJobs); // Add this line for debugging
+      toast({
+        title: "Job Posted",
+        description: "Your job has been posted successfully.",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      navigate("/jobs"); // Redirect to jobs page after successful submission
+    } catch (error) {
+      console.error("Error saving job to local storage:", error);
+      toast({
+        title: "Error",
+        description: "There was an error posting your job. Please try again.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
