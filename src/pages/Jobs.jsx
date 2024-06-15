@@ -6,9 +6,14 @@ const Jobs = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    // Fetch jobs from local storage
-    const storedJobs = JSON.parse(localStorage.getItem("jobs")) || [];
-    setJobs(storedJobs);
+    try {
+      // Fetch jobs from local storage
+      const storedJobs = JSON.parse(localStorage.getItem("jobs")) || [];
+      console.log("Fetched jobs:", storedJobs); // Add this line for debugging
+      setJobs(storedJobs);
+    } catch (error) {
+      console.error("Error fetching jobs from local storage:", error);
+    }
   }, []);
 
   return (
