@@ -28,8 +28,11 @@ const PostJob = () => {
       });
       return;
     }
-    // Handle form submission logic here
-    console.log({ jobTitle, jobDescription, jobLocation, startDate, file });
+    // Save job to local storage
+    const newJob = { title: jobTitle, description: jobDescription, location: jobLocation, startDate };
+    const storedJobs = JSON.parse(localStorage.getItem("jobs")) || [];
+    storedJobs.push(newJob);
+    localStorage.setItem("jobs", JSON.stringify(storedJobs));
     toast({
       title: "Job Posted",
       description: "Your job has been posted successfully.",
