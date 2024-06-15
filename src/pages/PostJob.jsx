@@ -1,4 +1,4 @@
-import { Box, Heading, VStack, FormControl, FormLabel, Input, Textarea, Button } from "@chakra-ui/react";
+import { Box, Heading, VStack, FormControl, FormLabel, Input, Textarea, Button, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 
 const PostJob = () => {
@@ -7,6 +7,7 @@ const PostJob = () => {
   const [jobLocation, setJobLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [file, setFile] = useState(null);
+  const toast = useToast();
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -14,8 +15,25 @@ const PostJob = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!jobTitle || !jobDescription || !jobLocation || !startDate) {
+      toast({
+        title: "Error",
+        description: "Please fill in all required fields.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+      return;
+    }
     // Handle form submission logic here
     console.log({ jobTitle, jobDescription, jobLocation, startDate, file });
+    toast({
+      title: "Job Posted",
+      description: "Your job has been posted successfully.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
   };
 
   return (
