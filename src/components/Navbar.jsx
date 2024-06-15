@@ -11,6 +11,7 @@ const Navbar = () => {
         <Flex alignItems="center">
           <Button as={RouterLink} to="/jobs" colorScheme="teal" variant="ghost" color="white">Jobs</Button>
           <Button as={RouterLink} to="/bid" colorScheme="teal" variant="ghost" color="white">Place a Bid</Button>
+          <Button as={RouterLink} to="/post-job" colorScheme="teal" variant="ghost" color="white">Post a Job</Button>
         </Flex>
       </Flex>
     </Box>
