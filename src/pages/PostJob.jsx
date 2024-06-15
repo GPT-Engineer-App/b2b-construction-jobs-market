@@ -1,5 +1,6 @@
 import { Box, Heading, VStack, FormControl, FormLabel, Input, Textarea, Button, useToast } from "@chakra-ui/react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 const PostJob = () => {
   const [jobTitle, setJobTitle] = useState("");
@@ -8,6 +9,8 @@ const PostJob = () => {
   const [startDate, setStartDate] = useState("");
   const [file, setFile] = useState(null);
   const toast = useToast();
+
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -34,6 +37,7 @@ const PostJob = () => {
       duration: 5000,
       isClosable: true,
     });
+    navigate("/jobs"); // Redirect to jobs page after successful submission
   };
 
   return (
