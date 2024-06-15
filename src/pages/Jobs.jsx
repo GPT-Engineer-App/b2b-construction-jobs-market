@@ -24,6 +24,7 @@ const Jobs = () => {
               <Text>{job.description}</Text>
               <Text><strong>Location:</strong> {job.location}</Text>
               <Text><strong>Start Date:</strong> {job.startDate}</Text>
+              <Button as={Link} to="/bid" colorScheme="teal" size="md" mt={2}>Submit Quote</Button>
             </Box>
           ))
         )}
